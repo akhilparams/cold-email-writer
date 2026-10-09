@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Cold Email Writer",
+  "version": "1.0.0",
+  "description": "Writes personalized networking emails from the LinkedIn profile you're viewing.",
+  "permissions": ["sidePanel", "storage", "scripting", "tabs"],
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "https://api.anthropic.com/*",
+    "https://api.apollo.io/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "side_panel": { "default_path": "sidepanel.html" },
+  "options_page": "options.html",
+  "action": { "default_title": "Cold Email Writer" }
+}

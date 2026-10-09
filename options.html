@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Cold Email Writer settings</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="settings">
+  <main>
+    <h1>Cold Email Writer settings</h1>
+    <p class="muted">Everything here stays in your browser. Changes apply to the next email you write.</p>
+
+    <section>
+      <h2>Your template</h2>
+      <p class="note">Put anything that changes per person in brackets, like [FIRST NAME], [FIRM], and [PERSONALIZED LINE]. Everything outside brackets is kept exactly as written.</p>
+      <textarea id="template" rows="14" placeholder="Hi [FIRST NAME],&#10;&#10;My name is ... [PERSONALIZED LINE]&#10;&#10;..."></textarea>
+    </section>
+
+    <section>
+      <h2>Keep in touch template</h2>
+      <p class="note">Used when you pick Keep in touch in the side panel, for people you've already talked to. Same bracket rules as above.</p>
+      <textarea id="thanksTemplate" rows="14"></textarea>
+    </section>
+
+    <section>
+      <h2>About you</h2>
+      <p class="note">Used to find things you share with each person and to write hooks that sound like you.</p>
+      <textarea id="persona" rows="8"></textarea>
+    </section>
+
+    <section>
+      <h2>Target schools</h2>
+      <p class="note">If someone went to one of these schools (and not Rutgers), cold emails leave Rutgers out and say "a second-year student studying finance and math" instead. Separate schools with commas.</p>
+      <textarea id="targetSchools" rows="3"></textarea>
+    </section>
+
+    <section>
+      <h2>Style notes</h2>
+      <p class="note">Tone, length, and anything the emails should always or never do.</p>
+      <textarea id="styleNotes" rows="3"></textarea>
+    </section>
+
+    <section>
+      <h2>Deal search</h2>
+      <label class="check"><input id="searchByDefault" type="checkbox"> Search the web for deals on every cold email</label>
+      <p class="note">Finds deals their group worked on so the email can open with one, like the EnergyCAP example. Each email takes about 30 seconds instead of a few, and costs a bit more. When this is off, Dig deeper does the same search on demand.</p>
+    </section>
+
+    <section>
+      <h2>Example emails</h2>
+      <p class="note">Paste 2 or 3 cold emails you've sent and liked, separated by a line with ---. This is the most reliable way to make every email sound the same.</p>
+      <textarea id="examples" rows="14"></textarea>
+    </section>
+
+    <section>
+      <h2>Gmail</h2>
+      <label for="gmailAccount">Gmail address to send from (optional)</label>
+      <input id="gmailAccount" type="email" placeholder="Only needed if you're signed into several Gmail accounts">
+    </section>
+
+    <section>
+      <h2>Email formats</h2>
+      <p class="note">The To field fills in automatically for about 90 banks, like flast@jefferies.com. Add firms that are missing, or fix ones that are wrong, one per line. Your lines take priority. Use first, last, f (first initial), m (middle initial), and l (last initial).</p>
+      <textarea id="emailPatterns" rows="5" placeholder="Harris Williams = flast@harriswilliams.com&#10;Some Firm = first.last@somefirm.com, flast@somefirm.com"></textarea>
+    </section>
+
+    <section>
+      <h2>Apollo (optional)</h2>
+      <label for="apolloKey">Apollo API key</label>
+      <input id="apolloKey" type="password" autocomplete="off" placeholder="Leave blank to skip email lookups">
+      <p class="note">Adds a Find with Apollo button next to the To field. Each lookup uses 1 Apollo credit and only runs when you click it. In Apollo, go to Settings, Integrations, API Keys, and create a master key.</p>
+    </section>
+
+    <section>
+      <h2>Claude API</h2>
+      <label for="apiKey">API key</label>
+      <input id="apiKey" type="password" autocomplete="off" placeholder="sk-ant-...">
+      <p class="note">Create one at console.anthropic.com. Dig deeper also needs web search turned on in the Console.</p>
+
+      <label for="model">Model</label>
+      <select id="model"></select>
+    </section>
+
+    <div class="save-row">
+      <button id="saveBtn" class="primary">Save settings</button>
+      <span id="saveStatus" class="muted" role="status"></span>
+    </div>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

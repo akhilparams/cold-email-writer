@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Cold Email Writer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="bar">
+    <span class="brand">Cold Email Writer</span>
+    <div class="bar-right">
+      <select id="modelPick" aria-label="Model"></select>
+      <button id="settingsBtn" class="link">Settings</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="viewSetup" class="state" hidden>
+      <p class="lead">Add your API key and email template to start writing emails.</p>
+      <button id="setupBtn" class="primary">Open settings</button>
+    </section>
+
+    <section id="viewEmpty" class="state" hidden>
+      <p class="lead">Open someone's LinkedIn profile and this panel will write them an email.</p>
+    </section>
+
+    <section id="viewReady" class="state" hidden>
+      <h1 id="readyName"></h1>
+      <div class="ready-email">
+        <label for="toReady">Their email</label>
+        <input id="toReady" type="email" autocomplete="off" placeholder="Looking for their firm...">
+        <p id="toReadyNote" class="note"></p>
+        <div id="readyAlts" class="alts" hidden></div>
+      </div>
+      <div class="type-toggle" role="radiogroup" aria-label="Email type">
+        <label><input type="radio" name="typeReady" value="cold"> Cold email</label>
+        <label><input type="radio" name="typeReady" value="thanks"> Keep in touch</label>
+      </div>
+      <div>
+        <label for="notesReady">Notes for this email (optional)</label>
+        <textarea id="notesReady" rows="4" placeholder="Example: Heard her speak at the Rutgers finance speaker series on Sept 18. She talked about moving from audit into M&amp;A."></textarea>
+        <p class="note" id="notesHint">Add how you know them or anything you want mentioned. If you've met or heard them speak, the email is written as a follow-up instead of a cold email.</p>
+      </div>
+      <button id="writeBtn" class="primary wide">Write email</button>
+    </section>
+
+    <section id="viewLoading" class="state" hidden>
+      <div class="spinner" aria-hidden="true"></div>
+      <p id="loadingText" class="muted">Reading the profile and writing your email...</p>
+    </section>
+
+    <section id="viewResult" hidden>
+      <div class="person">
+        <h1 id="pName"></h1>
+        <p id="pRole" class="muted"></p>
+        <p id="pLocation" class="note"></p>
+        <ul id="pConnections" class="chips" aria-label="What you have in common"></ul>
+      </div>
+
+      <div class="draft">
+        <div class="draft-row">
+          <label for="toField">To</label>
+          <input id="toField" type="email" autocomplete="off" placeholder="Their email">
+          <button id="apolloBtn" class="chip-btn" hidden>Find with Apollo</button>
+        </div>
+        <div class="draft-row">
+          <label for="subjectField">Subject</label>
+          <input id="subjectField" autocomplete="off">
+        </div>
+        <label for="bodyField" class="visually-hidden">Email</label>
+        <textarea id="bodyField" rows="14"></textarea>
+        <div class="draft-foot">
+          <span id="wordCount" class="count"></span>
+          <div class="editor-tools">
+            <button id="simpleBtn" class="text-btn">Keep it simple</button>
+            <button id="grammarBtn" class="text-btn">Check grammar</button>
+          </div>
+        </div>
+      </div>
+      <p id="toNote" class="note"></p>
+      <div id="guessAlts" class="alts" hidden></div>
+      <p id="grammarBox" class="note" hidden>
+        <span id="grammarText"></span>
+        <button id="grammarUndo" class="link small" hidden>Undo</button>
+      </p>
+
+      <div class="tweak">
+        <input id="tweakField" placeholder="Ask for a change, like &quot;shorter hook&quot;" aria-label="Change request">
+        <button id="tweakBtn">Apply</button>
+      </div>
+
+      <details id="notesDetails" class="panel">
+        <summary>Notes and email type</summary>
+        <div class="type-toggle" role="radiogroup" aria-label="Email type">
+          <label><input type="radio" name="typeResult" value="cold"> Cold email</label>
+          <label><input type="radio" name="typeResult" value="thanks"> Keep in touch</label>
+        </div>
+        <label for="notesResult">Notes for this email</label>
+        <textarea id="notesResult" rows="3" placeholder="How you know them or anything you want mentioned"></textarea>
+        <button id="notesBtn">Rewrite with these notes</button>
+      </details>
+
+      <div class="panel deeper">
+        <button id="deepBtn">Dig deeper</button>
+        <p class="note">Searches firm bios, news, and deal announcements for a stronger hook. About 30 seconds.</p>
+      </div>
+
+      <div id="sourcesBox" class="sources" hidden>
+        <h2>Sources</h2>
+        <ul id="sourceList"></ul>
+      </div>
+
+      <div class="actions">
+        <button id="gmailBtn" class="primary">Open in Gmail</button>
+        <button id="copyBtn">Copy email</button>
+      </div>
+    </section>
+
+    <p id="errorBox" class="error" role="alert" hidden></p>
+  </main>
+
+  <script src="shared.js"></script>
+  <script src="emailpatterns.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>
